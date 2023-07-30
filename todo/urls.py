@@ -1,6 +1,10 @@
+from asyncio import tasks
+
 from django.urls import path
 from . import views
+from rest_framework import routers
 
-urlpatterns = [
-    path('tasks/', views.task_list),
-]
+router = routers.DefaultRouter()
+router.register('tasks', views.TaskViewSet)
+
+urlpatterns = router.urls
