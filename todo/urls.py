@@ -5,7 +5,7 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('tasks', views.TaskViewSet)
+router.register('tasks', views.TaskViewSet, basename='tasks')
 router.register('cats', views.CategoryViewSet)
 
 urlpatterns = router.urls
