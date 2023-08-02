@@ -7,11 +7,10 @@ from django.contrib.auth import get_user_model
 import core.models
 from todo.filters import TaskFilter
 from todo.models import Task, Category
-from todo.serializers import TaskSerializer, CategorySerializer
+from todo.serializers import TaskSerializer, CategorySerializer, TaskSerializerForAdmin
 
 
 class TaskViewSet(ModelViewSet):
-    serializer_class = TaskSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = TaskFilter
     permission_classes = [IsAuthenticated]
@@ -24,6 +23,11 @@ class TaskViewSet(ModelViewSet):
 
         user_id = get_user_model().objects.only('id').get(pk=self.request.user.id)
         return Task.objects.filter(user_id=user_id)
+
+    def get_serializer_class(self):
+        if not self.request.user.is_staff:
+            return TaskSerializer
+        return TaskSerializerForAdmin
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

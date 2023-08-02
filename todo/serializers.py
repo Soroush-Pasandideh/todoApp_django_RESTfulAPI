@@ -12,6 +12,12 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'title', 'description', 'completed', 'created_at', 'category']
 
 
+class TaskSerializerForAdmin(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'user', 'title', 'description', 'completed', 'created_at', 'category']
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
