@@ -1,10 +1,11 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from todo.models import Task, Category
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    # user = serializers.CharField(read_only=True)
+    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Task
