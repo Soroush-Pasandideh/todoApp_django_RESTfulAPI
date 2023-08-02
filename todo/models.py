@@ -7,6 +7,7 @@ from todoApp_django_RESTfulAPI import settings
 
 
 class Category(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='categories')
     title = models.CharField(max_length=255)
 
     def __str__(self):
