@@ -47,3 +47,5 @@ class CategoryViewSet(ModelViewSet):
 
         user_id = get_user_model().objects.only('id').get(pk=self.request.user.id)
         return Category.objects.filter(user_id=user_id)
+
+
