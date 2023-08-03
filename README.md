@@ -1,2 +1,2 @@
-# todoApp_django_RESTfulAPI
- developed version of todo app using rest_framework and RESFful API.
+# todo_backend_django
+ this is an implementation of the back_end of a ToDo web app using Django and Django REST Framework and RESTful API.
