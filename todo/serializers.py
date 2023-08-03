@@ -1,25 +1,16 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from todo.models import Task, Category
-from todoApp_django_RESTfulAPI.settings import AUTH_USER_MODEL
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ['id', 'username']
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    # user = serializers.SlugRelatedField(read_only=True, default=serializers.CurrentUserDefault(),
-    #                                     slug_field='username/')
-    # user_id = serializers.IntegerField(read_only=True, source='user.id')
-    user = UserSerializer()
+    user = serializers.SlugRelatedField(read_only=True, default=serializers.CurrentUserDefault(),
+                                        slug_field='username')
+    user_id = serializers.IntegerField(read_only=True, source='user.id')
 
     class Meta:
         model = Task
-        fields = ['id', 'user', 'title', 'description', 'completed', 'created_at', 'category']
+        fields = ['id', 'user', 'user_id', 'title', 'description', 'completed', 'created_at', 'category']
 
 
 class CategorySerializer(serializers.ModelSerializer):
