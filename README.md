@@ -1,5 +1,5 @@
 # todo_backend_django
- this is an implementation of the back-end of a ToDo web app using Django and Django REST Framework and RESTful API.
+ this is an implementation of the back-end of a ToDo web app using Django and Django REST Framework.
  
  It connects to sqlLite database to store data.
 
